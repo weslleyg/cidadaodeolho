@@ -28,7 +28,10 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@controllers/*": ["./src/controllers/*"]
+      
     }  
-  }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
