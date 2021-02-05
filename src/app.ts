@@ -7,10 +7,18 @@ const app = express();
 app.use(express.json());
 app.use(router);
 
-const url = 'http://dadosabertos.almg.gov.br/ws/prestacao_contas/verbas_indenizatorias/deputados/26143/2020/2?formato=json';
+const url = 'http://dadosabertos.almg.gov.br/ws/deputados/em_exercicio?formato=json';
 
 request(url, (error, res, body) => {
-    console.log(body);
+
+    const data = JSON.parse(body)
+    
+    for(let i = 0; i < data.list.length; i++) {
+        console.log({
+            nome: data.list[i].nome,
+            partido: data.list[i].partido,
+        });
+    }
 });
 
 export { app };
