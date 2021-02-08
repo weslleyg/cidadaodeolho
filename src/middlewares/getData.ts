@@ -2,15 +2,17 @@ import axios from 'axios';
 // Importar deputados, reembolso de verbas por mes e redes sociais
 
 class GetData {
-    async getDeputados(url) {
+    async getDeputados(url, config) {
         try {
-            const res = await axios.get(`${url}`, {
-                headers: {
-                    'User-Agent': 'chrome'
-                }
-            });
+            const [dep, gasto] = await axios.all([
+                axios.get(url.dep, config),
+                axios.get(url.gastos, config)
+            ]);
 
-            return res.data
+            return {
+                dep: dep.data.list,
+                gastos: gasto.data.list
+            }
         } catch(err) {
             console.error(err)
         }
