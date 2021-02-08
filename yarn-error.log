@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/fs -D
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add axios
 
 PATH: 
   C:\Users\wesle\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\wesle\bin;C:\Python39\Scripts;C:\Python39;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin;C:\Program Files\nodejs;C:\Users\wesle\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\wesle\AppData\Local\Programs\Python\Python37;C:\Users\wesle\AppData\Local\Microsoft\WindowsApps;C:\Users\wesle\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\wesle\AppData\Local\Yarn\bin;C:\Users\wesle\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -14,17 +14,12 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2ffs: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65200:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129590:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130562:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:130484:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (internal/streams/readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  SyntaxError: C:\Users\wesle\Desktop\prejto\backendTeste\package.json: Unexpected token } in JSON at position 481
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:304:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:315:13
 
 npm manifest: 
   {
@@ -42,8 +37,6 @@ npm manifest:
     "license": "ISC",
     "dependencies": {
       "express": "^4.17.1",
-      "fs": "^0.0.1-security",
-      "request": "^2.88.2"
     },
     "devDependencies": {
       "@babel/cli": "^7.12.13",
@@ -52,7 +45,7 @@ npm manifest:
       "@babel/preset-env": "^7.12.13",
       "@babel/preset-typescript": "^7.12.13",
       "@types/express": "^4.17.11",
-      "@types/request": "^2.48.5",
+      "@types/sqlite3": "^3.1.7",
       "babel-plugin-module-resolver": "^4.1.0",
       "ts-node-dev": "^1.1.1",
       "tsconfig-paths": "^3.9.0",
@@ -1033,6 +1026,13 @@ Lockfile:
     integrity sha512-ZFqF6qa48XsPdjXV5Gsz0Zqmux2PerNd3a/ktL45mHpa19cuMi/cL8tcxdAx497yRh+QtYPuofjT9oWw9P7nkA==
     dependencies:
       "@types/mime" "^1"
+      "@types/node" "*"
+  
+  "@types/sqlite3@^3.1.7":
+    version "3.1.7"
+    resolved "https://registry.yarnpkg.com/@types/sqlite3/-/sqlite3-3.1.7.tgz#84fbc65946603d15cff4968d0cb283d1879dd156"
+    integrity sha512-8FHV/8Uzd7IwdHm5mvmF2Aif4aC/gjrt4axWD9SmfaxITnOjtOhCbOSTuqv/VbH1uq0QrwlaTj9aTz3gmR6u4w==
+    dependencies:
       "@types/node" "*"
   
   "@types/strip-bom@^3.0.0":
