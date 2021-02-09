@@ -1,7 +1,10 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import { router } from './routes';
 
-import GetData from './middlewares/getData';
+import GetData from './services/getData';
 
 const app = express();
 
