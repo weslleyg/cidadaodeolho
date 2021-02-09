@@ -6,12 +6,10 @@ class GetData {
         try {
             const [dep, gasto] = await axios.all([
                 axios.get(url.dep, config),
-                axios.get(url.gastos, config)
             ]);
 
             return {
                 dep: dep.data.list,
-                gastos: gasto.data.list
             }
         } catch(err) {
             console.error(err)

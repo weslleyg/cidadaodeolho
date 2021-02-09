@@ -15,13 +15,13 @@ export type Deputados = {
     }];
 }
 
-export const insertDeputados = async (deputados: Deputados) => {
+const insertDeputados = async (deputados: Deputados) => {
     await dbQuery(`INSERT INTO deputados (
         nome,
         partido,
         idDeputado,
         redesSociais
-    ) VALUES(?, ?)`, [
+    ) VALUES(?, ?, ?, ?)`, [
         deputados.nome,
         deputados.partido,
         deputados.idDeputado,
@@ -31,4 +31,8 @@ export const insertDeputados = async (deputados: Deputados) => {
     let response = await dbQuery(`SELECT seq FROM sqlite_sequence WHERE name = "deputados"`);
 
     return response[0];
+};
+
+export const deputadosModel = {
+    insertDeputados
 }
