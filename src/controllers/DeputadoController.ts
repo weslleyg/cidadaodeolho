@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { Deputados, deputadosModel } from 'src/models/deputados';
 import { badRequest, internalServerError } from 'src/services/utils';
 import GetData from '../services/getData';
@@ -18,9 +18,9 @@ const data = async (url, config) => {
     const dados = await get.getDeputados(url, config);
 
     return dados;
-}
+};
 
-const insertDeputados = async (res: Response) => {
+const insertDeputados = async (req: Request, res: Response) => {
     const dados = await data(url, config);
 
     if(!dados) {
@@ -32,16 +32,27 @@ const insertDeputados = async (res: Response) => {
             nome: dados.dep[i].nome,
             partido: dados.dep[i].partido,
             idDeputado: dados.dep[i].id,
-            redesSociais: [{
-                redeSocial: dados.dep[i].redesSociais.redeSocial
-            }]
+            redesSociais: dados.dep[i].redesSociais.redeSocial
         } as Deputados
 
         deputadosModel.insertDeputados(deputados)
-    }
+            .then(id => {
+                res.json({
+                    id
+                })
+            })
+            .catch(err => internalServerError(res, err));
+    };
 
-}
+};
 
-export {
-    insertDeputados
+const listDeputados = async (req: Request, res: Response) => {
+    await deputadosModel.listDeputados()
+        .then(deputados => { res.json(deputados)})
+        .catch(err => internalServerError(res, err));
+};
+
+export const deputadosController =  {
+    insertDeputados,
+    listDeputados
 }

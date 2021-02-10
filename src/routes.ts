@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { insertDeputados } from "./controllers/deputadoController";
+import { deputadosController } from "./controllers/deputadoController";
 
 const router = Router();
 
-router.get('/deputados', insertDeputados);
+router.get('/deputados', deputadosController.listDeputados);
 
 export { router }
 

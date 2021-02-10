@@ -6,13 +6,7 @@ export type Deputados = {
     nome: string;
     partido: string;
     idDeputado: number;
-    redesSociais: [{
-        redeSocial: {
-            idSocial: number;
-            nome: string;
-            url: string;
-        },
-    }];
+    redesSociais: [];
 }
 
 const insertDeputados = async (deputados: Deputados) => {
@@ -33,6 +27,13 @@ const insertDeputados = async (deputados: Deputados) => {
     return response[0];
 };
 
+const listDeputados = async() => {
+    const response = await dbQuery(`SELECT * FROM deputados`);
+    
+    return response as Deputados[];
+}
+
 export const deputadosModel = {
-    insertDeputados
+    insertDeputados,
+    listDeputados
 }
