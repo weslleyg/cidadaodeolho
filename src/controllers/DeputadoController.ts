@@ -35,14 +35,11 @@ const insertDeputados = async (req: Request, res: Response) => {
             redesSociais: dados.dep[i].redesSociais.redeSocial
         } as Deputados
 
-        deputadosModel.insertDeputados(deputados)
-            .then(id => {
-                res.json({
-                    id
-                })
-            })
-            .catch(err => internalServerError(res, err));
+        await deputadosModel.insertDeputados(deputados)
+        
     };
+
+    return res.json('ok')
 
 };
 
