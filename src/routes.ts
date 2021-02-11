@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { deputadosController } from "./controllers/deputadoController";
+import { redesSociaisController } from "./controllers/redesSociaisController";
 
 const router = Router();
 
-router.post('/insertdeputados', deputadosController.insertDeputados);
 router.get('/deputados', deputadosController.listDeputados);
 
 export { router }

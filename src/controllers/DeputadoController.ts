@@ -5,23 +5,15 @@ import GetData from '../services/getData';
 
 const get = new GetData();
 
-const url = {
-    dep: 'http://dadosabertos.almg.gov.br/ws/deputados/lista_telefonica?formato=json',
-    gastos: 'http://dadosabertos.almg.gov.br/ws/deputados/lista_telefonica?formato=json'
-};
+const url = 'http://dadosabertos.almg.gov.br/ws/deputados/lista_telefonica?formato=json'
+
 
 const config = {
     headers: {'User-Agent': 'API'}
 };
 
-const data = async (url, config) => {
-    const dados = await get.getDeputados(url, config);
-
-    return dados;
-};
-
 const insertDeputados = async (req: Request, res: Response) => {
-    const dados = await data(url, config);
+    const dados = await get.getDeputados(url, config);
 
     if(!dados) {
         return badRequest(res, "Erro em coletar os dados!");
@@ -31,14 +23,13 @@ const insertDeputados = async (req: Request, res: Response) => {
         const deputados = {
             nome: dados.dep[i].nome,
             partido: dados.dep[i].partido,
-            idDeputado: dados.dep[i].id,
-            redesSociais: dados.dep[i].redesSociais.redeSocial
+            idDeputado: dados.dep[i].id
         } as Deputados
 
         await deputadosModel.insertDeputados(deputados)
         
     };
-
+    
     return res.json('ok')
 
 };
