@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { RedesSociais, redesSociaisModel } from "src/models/redesSociais";
 import GetData from "src/services/getData";
 
 const get = new GetData();
@@ -21,9 +20,7 @@ const insertRedesSociais = async () => {
                 nome: dados.social[i].redesSociais[b].redeSocial.nome,
                 url: dados.social[i].redesSociais[b].url,
                 idDeputado: dados.social[i].id
-            } as RedesSociais
-            console.log('ta ok');
-            await redesSociaisModel.insertRedesSociais(redes);
+            } 
         }
     }
 };
