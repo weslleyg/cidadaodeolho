@@ -27,18 +27,20 @@ class deputadoController {
         }
 
         for(let i =0; i < dados.dep.length; i++) {
-            for(let b = 0; b < dados.dep[i].redesSociais.length; b++) {
+            // for(let b = 0; b < dados.dep[i].redesSociais.length; b++) {
                 
                 const deputados = {
                     nome: dados.dep[i].nome,
                     partido: dados.dep[i].partido,
                     idDeputado: dados.dep[i].id,
-                    redesSociais: dados.dep[i].redesSociais[b]
+                    redesSociais: dados.dep[i].redesSociais
                 }
 
-                console.log(deputados)
-            }
+                await Deputado.create(deputados);
+            // }
         }
+
+        return res.json('ok');
     }
 }
 

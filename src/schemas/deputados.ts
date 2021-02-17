@@ -5,7 +5,11 @@ const DeputadoSchema = new Schema({
     partido: String,
     idDeputado: Number,
     redesSociais: [{
-        nome: String,
+        redeSocial: {
+            id: Number,
+            nome: String,
+            url: String
+        },
         url: String
     }]
 }, {
