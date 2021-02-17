@@ -13,13 +13,8 @@ const config = {
 };
 
 class deputadoController {
-    public async index(req: Request, res: Response): Promise<Response> {
-        const deputados = await Deputado.find();
 
-        return res.json(deputados);
-    }
-
-    public async create(req: Request, res: Response): Promise<any> {
+    public async index(req: Request, res: Response): Promise<any> {
         const dados = await get.getDeputados(url, config);
 
         if(!dados) {
@@ -27,20 +22,21 @@ class deputadoController {
         }
 
         for(let i =0; i < dados.dep.length; i++) {
-            // for(let b = 0; b < dados.dep[i].redesSociais.length; b++) {
-                
                 const deputados = {
                     nome: dados.dep[i].nome,
                     partido: dados.dep[i].partido,
                     idDeputado: dados.dep[i].id,
                     redesSociais: dados.dep[i].redesSociais
                 }
-
-                await Deputado.create(deputados);
-            // }
+                try{
+                    await Deputado.create(deputados);
+                } catch(err) {
+                }
         }
 
-        return res.json('ok');
+        const deputados = await Deputado.find();
+
+        return res.json(deputados);
     }
 }
 

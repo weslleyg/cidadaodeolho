@@ -3,7 +3,7 @@ import deputadoController from './controllers/deputadoController';
 
 const router = Router();
 
-router.get('/teste', deputadoController.create);
+router.get('/', deputadoController.index);
 
 export { router }
 
