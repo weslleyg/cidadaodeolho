@@ -3,28 +3,33 @@ import GetData from "src/services/getData";
 
 const get = new GetData();
 
-const url = 'http://dadosabertos.almg.gov.br/ws/deputados/lista_telefonica?formato=json'
-
-
 const config = {
     headers: {'User-Agent': 'API'}
 };
 
-const insertRedesSociais = async () => {
-    const dados = await get.getSocials(url, config);
+class gastosController {
+    public async index(req: Request, res: Response): Promise<any> {
+        
+        const id = req.params.id
+        let soma = 0;
+        console.log(id)
 
-    for(let i =0; i < dados.social.length; i++) {
-        for(let b = 0; b < dados.social[i].redesSociais.length; b++) {
-            
-            const redes = {
-                nome: dados.social[i].redesSociais[b].redeSocial.nome,
-                url: dados.social[i].redesSociais[b].url,
-                idDeputado: dados.social[i].id
-            } 
+        for(let i = 0; i < 12; i++) {
+            const url = `http://dadosabertos.almg.gov.br/ws/prestacao_contas/verbas_indenizatorias/deputados/${id}/2019/${i}?formato=json`
+            const dados = await get.getGastos(url, config);
+
+            for(let x = 0; x < dados.gastos.length; x++) {
+                try {
+                    soma = soma + dados.gastos[i].valor
+                } catch(err) {
+
+                }
+            }
         }
-    }
+
+        console.log(soma)
+
+    }; 
 };
 
-export const redesSociaisController = {
-    insertRedesSociais
-}
+export default new gastosController()

@@ -14,11 +14,11 @@ class GetData {
         };
     }
 
-    async getSocials(url, config) {
+    async getGastos(url, config) {
         try {
-            const social = await axios.get(url, config)
+            const gastos = await axios.get(url, config)
 
-            return {social: social.data.list}
+            return {gastos: gastos.data.list}
         } catch(err) {
             console.log(err);
         };
