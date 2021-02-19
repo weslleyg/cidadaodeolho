@@ -20,7 +20,8 @@ class gastosController {
 
             for(let x = 0; x < dados.gastos.length; x++) {
                 try {
-                    soma = soma + dados.gastos[i].valor
+                    soma = soma + dados.gastos[x].valor
+                    console.log(`${dados.gastos[x].valor} - ${i}`)
                 } catch(err) {
 
                 }
