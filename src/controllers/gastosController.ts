@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import Gastos from '../schemas/gastos';
 import GetData from "src/services/getData";
 
 const get = new GetData();
@@ -11,7 +12,7 @@ class gastosController {
     public async index(req: Request, res: Response): Promise<any> {
         
         const id = req.params.id
-        let soma = 0;
+        let soma = null
         console.log(id)
 
         for(let i = 0; i < 12; i++) {
@@ -19,16 +20,24 @@ class gastosController {
             const dados = await get.getGastos(url, config);
 
             for(let x = 0; x < dados.gastos.length; x++) {
-                try {
                     soma = soma + dados.gastos[x].valor
-                    console.log(`${dados.gastos[x].valor} - ${i}`)
-                } catch(err) {
-
-                }
             }
         }
 
-        console.log(soma)
+        const gastos = {
+            idDeputado: id,
+            valor: parseInt(soma)
+        }
+        
+        try {
+            await Gastos.create(gastos)
+        } catch(err) {
+
+        }
+
+        const result = await Gastos.find()
+
+        return res.json(result)
 
     }; 
 };
